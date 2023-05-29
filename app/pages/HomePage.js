@@ -18,7 +18,7 @@ export default function HomePage() {
   },[]);
 
   return (
-    <ScrollView margin={3}>
+    <ScrollView margin={3} marginBottom={20}>
       { data.map((item,index) =>
           (<Card key={index} item={item} />))
       }

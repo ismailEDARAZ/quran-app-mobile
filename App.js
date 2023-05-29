@@ -8,10 +8,10 @@ export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Home'>
-        <Stack.Screen name="Start" component={StartPage} options={{headerShown: false}} />
-        <Stack.Screen name="Home" component={HomePage} />
-        <Stack.Screen name="Surah" component={SurahPage} />
+      <Stack.Navigator initialRouteName='HomePage'>
+        <Stack.Screen name="StartPage" component={StartPage} options={{headerShown: false}} />
+        <Stack.Screen name="HomePage" component={HomePage} />
+        <Stack.Screen name="SurahPage" component={SurahPage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

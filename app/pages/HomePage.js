@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Card from '../components/Card';
-import { ScrollView } from 'react-native';
+import { FlatList, ScrollView, Text, View } from 'react-native';
 
 export default function HomePage() {
 
@@ -10,7 +10,7 @@ export default function HomePage() {
     const resp = await fetch("http://api.alquran.cloud/v1/surah");
     const data_json = await resp.json();
     setData(data_json.data);
-    //console.log(data_json)
+    console.log("data ",data)
   };
 
   useEffect(()=>{
@@ -18,10 +18,10 @@ export default function HomePage() {
   },[]);
 
   return (
-    <ScrollView margin={3}>
-      { data.map((item,index) =>
-          (<Card key={index} item={item} />))
-      }
-    </ScrollView>
+    <FlatList 
+      data={data} 
+      renderItem={({item})=> <Card item={item} /> }
+      keyExtractor={item => item.number}
+    />
   )
 }

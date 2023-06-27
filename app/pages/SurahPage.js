@@ -1,22 +1,48 @@
-import React from 'react'
-import { View } from 'react-native';
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View } from 'react-native';
 
-export default function SurahPage({ route, navigation }) {
-  const { item } = route.params;
-  const urlImage = item.image_url ? item.image_url : "https://www.holidify.com/images/cmsuploads/compressed/Bangalore_citycover_20190613234056.jpg";
-  console.log('Detail', item)
+export default function SurahPage({ route }) {
+  const { surahNumber } = route.params;
+  console.log('Detail', surahNumber)
+  const [surah, setSurah] = useState({});
+  const [ayahs, setAyahs] = useState([]);
+
+  const getSurah = async () => {
+    const resp = await fetch("http://api.alquran.cloud/v1/surah/"+surahNumber);
+    const data_json = await resp.json();
+    setSurah(data_json.data);
+    setAyahs(data_json.data.ayahs);
+    console.log("surah ",surah)
+    console.log("ayahs ",ayahs)
+  };
+
+  useEffect(()=>{
+    getSurah();
+  },[]);
+
   return (
-    <View></View>
+    <View style={style.container}>
+      <Text style={style.surah}>{surah.name}</Text>
+      <Text> {ayahs.map((ayah, index)=> <Text style={style.ayah} key={index}>{ayah.text.trim()} <Text style={style.number}>{ayah.number}</Text> </Text>)}</Text>
+    </View>
   )
 }
 
-const styles = StyleSheet.create({
+const style = StyleSheet.create({
   container: {
-    flex: 1,
-    paddingHorizontal: 20
+    paddingHorizontal: 25
   },
-  text: {
-    fontSize: 25,
-    fontWeight: '500',
+  surah:{
+    fontSize:36, 
+    fontWeight: 'bold', 
+    textAlign: 'center', 
+    marginVertical: 20
   },
-});
+  ayah: {
+    fontSize: 18
+  },
+  number :{
+    fontWeight: 'bold',
+    fontSize: 18
+  }
+})

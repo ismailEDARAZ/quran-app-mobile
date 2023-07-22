@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
 export default function SurahPage({ route }) {
   const { surahNumber } = route.params;
@@ -22,8 +22,10 @@ export default function SurahPage({ route }) {
 
   return (
     <View style={style.container}>
-      <Text style={style.surah}>{surah.name}</Text>
-      <Text> {ayahs.map((ayah, index)=> <Text style={style.ayah} key={index}>{ayah.text.trim()} <Text style={style.number}>{ayah.number}</Text> </Text>)}</Text>
+      <ScrollView>
+        <Text style={style.surah}>{surah.name}</Text>
+        <Text> {ayahs.map((ayah, index)=> <Text style={style.ayah} key={index}>{ayah.text.trim()} <Text style={style.number}>{ayah.numberInSurah}</Text> </Text>)}</Text>
+      </ScrollView>
     </View>
   )
 }

@@ -10,8 +10,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='HomePage'>
         <Stack.Screen name="StartPage" component={StartPage} options={{headerShown: false}} />
-        <Stack.Screen name="HomePage" component={HomePage} />
-        <Stack.Screen name="SurahPage" component={SurahPage} />
+        <Stack.Screen name="HomePage" component={HomePage} options={{headerShown: false}} />
+        <Stack.Screen name="SurahPage" component={SurahPage} options={{headerShown: false}} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -7,10 +7,10 @@ export default function Card({item}) {
   //console.log(item)
   return (
     <TouchableOpacity style={style.card} 
-      onPress={()=> navigation.navigate('SurahPage', {surahNumber: item.number})}
+      onPress={()=> navigation.navigate('SurahPage', {surahNumber: item.id})}
     >
-     <Text style={{fontSize:25}}>{item.number} . {item.name}</Text>
-     <Text style={{fontSize:15}}>{item.numberOfAyahs}</Text>
+     <Text style={{fontSize:25}}>{item.id} . {item.name}</Text>
+     <Text style={{fontSize:15}}>{item.id}</Text>
     </TouchableOpacity>
   )
 }
